@@ -1,0 +1,46 @@
+.leftside{
+    width: 15%;
+}
+.rightside{
+    width: 85%;
+}
+.headerimg{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.dashbuttons{
+    border: 1px solid green;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    text-decoration: none;
+    background-color: green;
+    border-radius: 60px;
+    padding: 5px 10px;
+    text-align: center;
+    color: white;
+    transition: all 0.4s;
+    font-weight: 600;
+}
+.dashbuttons:hover{
+    color: green;
+    background-color: white;
+}
+.logoutbtn{
+    border: 1px solid red;
+    background-color: red !important;
+}
+.logoutbtn:hover{
+    background-color: white !important;
+    color: red !important;
+}
+.accountImage{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+.form-control:focus{
+    border-color: #1876f2;
+    box-shadow: none;
+}

@@ -1,0 +1,21 @@
+.profileImage{
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+}
+.profilediv{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.669);
+    font-size: 20px;
+    margin: 0 20px;
+}
+.profilediv p{
+    width: 15%;
+    font-weight: bold;
+}
+.profilediv span{
+    width: 85%;
+    display: block;
+}
