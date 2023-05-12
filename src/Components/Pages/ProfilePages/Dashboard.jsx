@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import "./../style/dashboard.css"
 import { addLike } from '../../Redux/Action/postAction'
 import Like from './Like'
+import Comments from './Comments'
 
 const Dashboard = () => {
   const user = useSelector(state => state.user.user)
@@ -79,7 +80,7 @@ const Dashboard = () => {
                       <span>
                         {/* <FaHeart style={showLike == true ? {color : 'red'} : {color : 'black'}} className='me-3' onClick={() => like(x)}/> {x.like?.length} */}
                         <Like like={x.like} postId={x.id}/>
-                        <FaCommentDots className='me-3'/>
+                        <Comments />
                         <FaShareSquare />
                       </span>
                       <span><FaBookmark /></span>
