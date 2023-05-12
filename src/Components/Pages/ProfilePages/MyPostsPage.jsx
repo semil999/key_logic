@@ -1,7 +1,9 @@
 import React from 'react'
-import { FaBookmark, FaCommentDots, FaHeart, FaShareSquare } from 'react-icons/fa'
+import { FaBookmark, FaShareSquare } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { postDataDelete } from '../../Redux/Action/postAction'
+import Like from './Like'
+import Comments from './Comments'
 
 const MyPostsPage = () => {
   const post = useSelector(state => state.post.post)
@@ -31,12 +33,13 @@ const MyPostsPage = () => {
                   </div>
                   <div className='card-footer'>
                     <div className='d-flex justify-content-between fs-4'>
-                      <span>
-                        <FaHeart className='me-3'/>
-                        <FaCommentDots className='me-3'/>
+                      <span className='d-flex align-items-center'>
+                        {/* <FaHeart className='me-3'/> */}
+                        <Like like={x.like} postId={x.id}/>
+                        <Comments />
                         <FaShareSquare />
                       </span>
-                      <span><FaBookmark /></span>
+                      <span className='d-flex align-items-center'><FaBookmark /></span>
                     </div>
                   </div>
                 </div>
