@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./../style/socialmediapage.css"
-import { Link, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { FaPlayCircle, FaPlus } from 'react-icons/fa';
 import { Button, Modal } from 'react-bootstrap';
@@ -60,7 +60,7 @@ const SocialPage = () => {
             <FaPlayCircle className='ms-4 me-2 fs-1'/><h2 className='pt-1'><Link to={'/account/dashboard'} style={{color : '#fff' , textDecoration : 'none'}}>Social Media</Link></h2>
                 <div className='ms-auto'>
                     <span className='me-3 fs-5' style={{cursor : 'pointer'}} onClick={handleShow}>Add Post <FaPlus className='fs-3'/></span>
-                    <img src={userData.profile} className='headerimg me-3' />
+                    <Link to={'/account/profile'}><img src={userData.profile} className='headerimg me-3' /></Link>
                 </div>
             </div>
             <div className='d-flex flex-wrap' style={{height : '93vh' , backgroundColor : '#efefef'}}>
@@ -70,10 +70,10 @@ const SocialPage = () => {
                         <h5 className='fw-bold pt-2 mb-0'>{userData.firstName} {userData.lastName}</h5>
                         <span>{userData.email}</span>
                     </div>
-                    <div><Link className='dashbuttons' to={'/account/dashboard'}>Dashboard</Link></div>
-                    <div><Link className='dashbuttons' to={'/account/profile'}>Profile</Link></div>
-                    <div><Link className='dashbuttons' to={'/account/myposts'}>My Posts</Link></div>
-                    <div><Link className='dashbuttons' to={'/account/setting'}>Setting</Link></div>
+                    <div><NavLink className='dashbuttons' to={'/account/dashboard'}>Dashboard</NavLink></div>
+                    <div><NavLink className='dashbuttons' to={'/account/profile'}>Profile</NavLink></div>
+                    <div><NavLink className='dashbuttons' to={'/account/myposts'}>My Posts</NavLink></div>
+                    <div><NavLink className='dashbuttons' to={'/account/setting'}>Setting</NavLink></div>
                     <div><button onClick={logout} className='dashbuttons logoutbtn'>Logout</button></div>
                 </div>
                 <div className='rightside h-100 overflow-auto'>

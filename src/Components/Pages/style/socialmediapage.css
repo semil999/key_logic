@@ -44,3 +44,7 @@
     border-color: #1876f2;
     box-shadow: none;
 }
+.active{
+    color: green;
+    background-color: #fff;
+}

@@ -48,6 +48,7 @@ const Comments = ({postId , userPostId}) => {
             dispatch(Comment(postObj))
         }
         setobj({...blanckObj})
+        setisShow(false)
     }
 
     const editComment = (x) => {
@@ -63,7 +64,7 @@ const Comments = ({postId , userPostId}) => {
 
   return (
     <>
-        <FaCommentDots className='me-3' onClick={() => setShow(true)}/>
+        <FaCommentDots className='me-3' style={{cursor : 'pointer'}} onClick={() => setShow(true)}/>
         <Modal show={show} onHide={() => setShow(false)}>
             <Modal.Header closeButton>
                 <Modal.Title>Comments</Modal.Title>
