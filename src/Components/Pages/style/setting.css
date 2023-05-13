@@ -2,6 +2,25 @@
     border: none;
     border-bottom: 1px solid gray;
 }
+.settingdiv{
+    height: 75%;
+}
 .editinput:focus{
     outline: none;
+}
+
+@media (max-width : 1650px){
+    .settingdiv{
+        height: 80%;
+    }
+} 
+@media (max-width : 1450px){
+    .settingdiv{
+        height: 90%;
+    }
+} 
+@media (max-width : 1300px){
+    .settingdiv{
+        height: 97%;
+    }
 }

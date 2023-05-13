@@ -57,7 +57,7 @@ const MyPostsPage = () => {
   return (
     <>
       <div className='container-fluid'>
-        <div className='row row-cols-3 g-4 py-3'>
+        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-2 g-4 py-3'>
           {
             myposts?.map((x,i) => {
               return <div className='col' key={i}>
@@ -67,7 +67,7 @@ const MyPostsPage = () => {
                   {/* <span className='pt-2'><BiDotsVerticalRounded style={{cursor : 'pointer'}} className='fs-5'/></span> */}
                 </div>
                   <div>
-                    <img src={x.file} style={{height : '310px' , width : '100%'}} className='card-img-top' />
+                    <img src={x.file} style={{height : '310px' , width : '100%'}} />
                   </div>
                   <div className='card-body'>
                     <h5 className="card-title">{x.title}</h5>

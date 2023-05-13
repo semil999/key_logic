@@ -56,14 +56,14 @@ const SocialPage = () => {
   return (
     <>
         <div className='container-fluid g-0' style={{height : '100vh'}}>
-            <div className='d-flex align-items-center' style={{height : '7vh' , background : '#1876f2' , color : 'white'}}>
+            <div className='d-flex align-items-center header' style={{background : '#1876f2' , color : 'white'}}>
             <FaPlayCircle className='ms-4 me-2 fs-1'/><h2 className='pt-1'><Link to={'/account/dashboard'} style={{color : '#fff' , textDecoration : 'none'}}>Social Media</Link></h2>
                 <div className='ms-auto'>
                     <span className='me-3 fs-5' style={{cursor : 'pointer'}} onClick={handleShow}>Add Post <FaPlus className='fs-3'/></span>
                     <Link to={'/account/profile'}><img src={userData.profile} className='headerimg me-3' /></Link>
                 </div>
             </div>
-            <div className='d-flex flex-wrap' style={{height : '93vh' , backgroundColor : '#efefef'}}>
+            <div className='d-flex flex-wrap bottomDiv' style={{backgroundColor : '#efefef'}}>
                 <div className='leftside h-100 p-3 px-5 border-end border-dark'>
                     <div className='d-flex justify-content-center flex-wrap pb-5'>
                         <img src={userData.profile} className='accountImage' alt="" />

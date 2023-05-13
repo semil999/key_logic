@@ -44,7 +44,7 @@ const Setting = () => {
   return (
     <>
         <div className='container d-flex justify-content-center align-items-center h-100'>
-            <form className='bg-white h-75 w-75 rounded-4 p-4 fs-5'>
+            <form className='bg-white settingdiv w-75 rounded-4 p-4 fs-5'>
                 <h3 className='text-center fw-bold text-decoration-underline' style={{color : '#1876f2'}}>Edit Your Profile</h3>
                 <label className='w-100 fw-bold pt-3'>First Name :- </label>
                 <input type="text" value={obj.firstName} name='firstName' className='w-100 editinput' onChange={data}/>

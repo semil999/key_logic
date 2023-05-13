@@ -1,6 +1,12 @@
 .leftside{
     width: 15%;
 }
+.header{
+    height: 8vh;
+}
+.bottomDiv{
+    height: 92vh;
+}
 .rightside{
     width: 85%;
 }
@@ -48,3 +54,22 @@
     color: green;
     background-color: #fff;
 }
+
+@media (max-width : 1450px){
+    .leftside{
+        width: 20%;
+    }
+    .rightside{
+        width: 80%;
+    }
+    .accountImage{
+        height: 100px;
+        width: 100px;
+    }
+    .header{
+        height: 10vh;
+    }
+    .bottomDiv{
+        height: 90vh;
+    }
+} 
