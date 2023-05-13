@@ -17,7 +17,7 @@ const LoginPage = () => {
     let matchuserdata = user?.find(x => x?.email == obj?.email)
     if(matchuserdata?.email == obj?.email && matchuserdata?.password == obj?.password){
       localStorage.setItem('loginData' , JSON.stringify(obj))
-      localStorage.setItem('userId' , JSON.stringify(matchuserdata.id))
+      localStorage.setItem('loginUser' , JSON.stringify(matchuserdata.id))
       window.location.href = "/account/dashboard"
     }
     else if(matchuserdata?.email == obj.email && matchuserdata?.password != obj.password){

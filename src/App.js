@@ -36,7 +36,7 @@ function App() {
               <Route path='/register' element={<RegisterPage />}></Route>
             </>:
             <>
-              <Route path='/' element={<Navigate to={'/account'} />}/>
+              {/* <Route path='/' element={<Navigate to={'/account'} />}/> */}
               <Route path='/account' element={<SocialPage />} >
                 <Route path='dashboard' element={<Dashboard />} ></Route>
                 <Route path='profile' element={<ProfilePage />} ></Route>

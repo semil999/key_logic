@@ -1,57 +1,21 @@
-import React, { useRef, useState } from 'react'
-import { FaBookmark, FaCommentDots, FaHeart, FaShareSquare } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { FaBookmark, FaShareSquare } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 import "./../style/dashboard.css"
-import { addLike } from '../../Redux/Action/postAction'
 import Like from './Like'
 import Comments from './Comments'
 
 const Dashboard = () => {
+  const userId = JSON.parse(localStorage.getItem('loginUser'))
   const user = useSelector(state => state.user.user)
   const post = useSelector(state => state.post.post)
-  const userId = JSON.parse(localStorage.getItem('userId'))
-  const dispatch = useDispatch()
-  let id;
-  let postdata = post?.find(x => x.id == id?.id)
-  const [showLike, setshowLike] = useState(id?.like?.includes(userId) ? true : false)
-
-  const like = (object) => {
-    // if(object.like == ""){
-    //   object.like.push(userId)
-    //   object.showLike = true
-    // }
-    // else{
-    //   // object.like?.map(x => x != userId ? object.like.push(userId) : object.like = a)
-    //   object.like?.map(x => {
-    //     if(x != userId){
-    //       object.like.push(userId)
-    //     }
-    //     else{
-    //       let a = object.like?.filter(e => e != userId);
-    //       object.like = a;
-    //     }
-    //     return object.like
-    //   })
-    // }
-    // dispatch(addLike(object))
-    if(!showLike){
-      postdata.like.push(userId)
-      setshowLike(true)
-    }
-    else{
-      let a = postdata.like?.filter(e => e != userId);
-      postdata.like = a;
-      setshowLike(false)
-    }
-    dispatch(addLike(postdata))
-  }
+  const postData = post?.find(x => x.userId == userId)
   return (
     <>
       <div className='container-fluid'>
         <div className='row row-cols-3 g-4 py-3'>
           {
             post?.map((x,i) => {
-              // console.log(id = x)
               return <div className='col' key={i}>
                 <div className='card h-100'>
                 <div className='text-white p-2 bg-dark card-header'>
@@ -78,9 +42,8 @@ const Dashboard = () => {
                   <div className='card-footer'>
                     <div className='d-flex justify-content-between fs-4'>
                       <span>
-                        {/* <FaHeart style={showLike == true ? {color : 'red'} : {color : 'black'}} className='me-3' onClick={() => like(x)}/> {x.like?.length} */}
                         <Like like={x.like} postId={x.id}/>
-                        <Comments />
+                        <Comments postId={x.id} userPostId={postData.id}/>
                         <FaShareSquare />
                       </span>
                       <span><FaBookmark /></span>

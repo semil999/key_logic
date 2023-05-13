@@ -7,10 +7,10 @@ import Comments from './Comments'
 
 const MyPostsPage = () => {
   const post = useSelector(state => state.post.post)
-  const userId = JSON.parse(localStorage.getItem('userId'))
+  const userId = JSON.parse(localStorage.getItem('loginUser'))
+  const myposts = post?.filter(x => x.userId == userId)
   const dispatch = useDispatch()
 
-  const myposts = post?.filter(x => x.userId == userId)
   return (
     <>
       <div className='container-fluid'>
@@ -34,9 +34,8 @@ const MyPostsPage = () => {
                   <div className='card-footer'>
                     <div className='d-flex justify-content-between fs-4'>
                       <span className='d-flex align-items-center'>
-                        {/* <FaHeart className='me-3'/> */}
                         <Like like={x.like} postId={x.id}/>
-                        <Comments />
+                        <Comments postId={x.id} userPostId={x.id}/>
                         <FaShareSquare />
                       </span>
                       <span className='d-flex align-items-center'><FaBookmark /></span>

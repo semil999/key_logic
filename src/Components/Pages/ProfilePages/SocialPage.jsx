@@ -17,7 +17,7 @@ const SocialPage = () => {
     
     const logout = () => {
         localStorage.removeItem('loginData')
-        localStorage.removeItem('userId')
+        localStorage.removeItem('loginUser')
         window.location.reload()
         window.location.href = '/login'
     }

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { LIKE, POSTDATA } from "../Type/types"
+import { COMMENT, LIKE, POSTDATA } from "../Type/types"
 
 export const getPostApi = () => {
     return (dispatch) => {
@@ -29,6 +29,14 @@ export const postDataDelete = (id) => {
 }
 
 export const addLike = (obj) => {
+    return (dispatch) => {
+        axios.put(`http://localhost:3000/post/${obj.id}` , obj).then(() => {
+            dispatch(getPostApi())
+        })
+    }
+}
+
+export const Comment = (obj) => {
     return (dispatch) => {
         axios.put(`http://localhost:3000/post/${obj.id}` , obj).then(() => {
             dispatch(getPostApi())
