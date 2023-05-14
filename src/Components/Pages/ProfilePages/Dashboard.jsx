@@ -43,7 +43,7 @@ const Dashboard = () => {
                     <div className='d-flex justify-content-between fs-4'>
                       <span>
                         <Like like={x.like} postId={x.id}/>
-                        <Comments postId={x.id} userPostId={postData.id}/>
+                        <Comments postId={x.id} userPostId={postData?.id}/>
                         <FaShareSquare />
                       </span>
                       <span><FaBookmark /></span>
