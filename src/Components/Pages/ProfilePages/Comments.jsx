@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap';
 import { FaCommentDots, FaLocationArrow, FaPen } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
@@ -32,14 +32,19 @@ const Comments = ({postId , userPostId}) => {
 
     const addComment = () => {
         if(obj.id == 0){
-            let c1 = uuidv4();
-            obj.id = c1;
-            obj.userId = userId
-            obj.postId = postId
-            obj.email = userData.email
-            let postObj = post?.find(x => x.id == obj.postId)
-            'comment' in postObj == true ? postObj.comment.push(obj) : postObj.comment = [obj]
-            dispatch(Comment(postObj))
+            if(obj.comment == ""){
+                alert('Please Enter Comment in Box');
+            }
+            else{
+                let c1 = uuidv4();
+                obj.id = c1;
+                obj.userId = userId
+                obj.postId = postId
+                obj.email = userData.email
+                let postObj = post?.find(x => x.id == obj.postId)
+                'comment' in postObj == true ? postObj.comment.push(obj) : postObj.comment = [obj]
+                dispatch(Comment(postObj))
+            }
         }
         else{
             let postObj = post?.find(x => x.id == obj.postId)
@@ -47,6 +52,7 @@ const Comments = ({postId , userPostId}) => {
             postObj.comment.splice(update , 1 , obj)
             dispatch(Comment(postObj))
         }
+        setisShow(false)
         setobj({...blanckObj})
     }
 
@@ -61,16 +67,21 @@ const Comments = ({postId , userPostId}) => {
         dispatch(Comment(postObj))
     }
 
+    const enterKey = (e) => {
+        console.log('first')
+        console.log(e)
+    }
+
   return (
     <>
-        <FaCommentDots className='me-3' onClick={() => setShow(true)}/>
-        <Modal show={show} onHide={() => setShow(false)}>
+        <FaCommentDots style={{cursor : 'pointer'}} className='' onClick={() => setShow(true)}/> <span className='me-3 ms-1'>{postData?.comment?.length}</span>
+        <Modal show={show} onHide={() => setShow(false)} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
                 <Modal.Title>Comments</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className='mb-3'>
-                    <input onChange={commentData} value={obj.comment} type="text" className='commentinput' name='comment' placeholder='Add Your Comment' style={{ width : '95%' , border : 'none' , borderBottom : '0.5px solid gray'}}/> {isShow == true ? <FaLocationArrow style={{cursor : 'pointer'}} className='text-primary' onClick={addComment}/> : <></>}
+                    <input onChange={commentData} value={obj.comment} type="text" className='commentinput' name='comment' placeholder='Add Your Comment' style={{ width : '95%' , border : 'none' , borderBottom : '0.5px solid gray'}}/> {isShow == true ? <FaLocationArrow style={{cursor : 'pointer'}} className='text-primary' onClick={addComment} onKeyPress={enterKey}/> : <></>}
                 </div>
                 <div>
                     <dl>

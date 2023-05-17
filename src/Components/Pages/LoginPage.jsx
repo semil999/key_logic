@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import "./style/loginpage.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 const LoginPage = () => {
   const user = useSelector(state => state.user.user)
   const blanckObj = {email : '' , password : ''}
   const [obj, setobj] = useState({...blanckObj})
+  const navigate = useNavigate()
 
   const logindata = (e) => {
     obj[e.target.name] = e.target.value
@@ -16,18 +18,30 @@ const LoginPage = () => {
   const saveData = () => {
     let matchuserdata = user?.find(x => x?.email == obj?.email)
     if(matchuserdata?.email == obj?.email && matchuserdata?.password == obj?.password){
-      localStorage.setItem('loginData' , JSON.stringify(obj))
-      localStorage.setItem('loginUser' , JSON.stringify(matchuserdata.id))
-      window.location.href = "/account/dashboard"
-    }
-    else if(matchuserdata?.email == obj.email && matchuserdata?.password != obj.password){
-      alert('Please enter valid password');
+      Swal.fire({
+        position: 'center-center',
+        icon: 'success',
+        title: 'Your Login Successfully.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(() => {
+        localStorage.setItem('loginData' , JSON.stringify(obj))
+        localStorage.setItem('loginUser' , JSON.stringify(matchuserdata.id))
+        // navigate('/account/dashboard')
+        window.location.href = "/account/dashboard"
+      }, 1500);
     }
     else if(obj.email == "" && obj.password == ""){
-      alert('Please fill out this fild');
+      Swal.fire(
+        'Please Fill Out This Fild !'
+      )
     }
     else{
-      alert('please enter valid username');
+      Swal.fire({
+        icon: 'error',
+        title: 'Please enter valid UserName and Password.',
+      })
     }
   }
   return (

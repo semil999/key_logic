@@ -1,3 +1,37 @@
 .like{
     color: red;
 }
+.pagination{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.pagination ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+.pagination ul li a{
+    padding: 4px 10px 6px 10px;
+    background-color: rgb(24, 118, 242);
+    border: 3px solid #efefef;
+    color: white !important;
+    text-decoration: none;
+}
+.pagination ul li:first-child a,.pagination ul li:last-child a{
+    padding: 4px 20px 6px 20px;
+    margin: 0 10px;
+}
+.pagination ul li:first-child,.pagination ul li:last-child{
+    background-color: #efefef;
+}
+.pagination ul .selected a{
+    background-color: yellow;
+    color: black !important;
+}
+.pagination ul li.disabled a{
+    background-color: rgba(24, 118, 242, 0.4);
+    text-decoration: line-through;
+    cursor: auto;
+}

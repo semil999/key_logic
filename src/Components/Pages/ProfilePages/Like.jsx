@@ -24,7 +24,7 @@ const Like = (props) => {
     }
   return (
     <>
-        <FaHeart style={showLike == true ? {color : 'red'} : {color : 'black'}} onClick={like} /> <span className='me-3 ms-1'>{postdata?.like?.length}</span>
+        <FaHeart style={showLike == true ? {color : 'red' , cursor : 'pointer'} : {color : 'black' , cursor : 'pointer'}} onClick={like} /> <span className='me-3 ms-1'>{postdata?.like?.length}</span>
     </>
   )
 }

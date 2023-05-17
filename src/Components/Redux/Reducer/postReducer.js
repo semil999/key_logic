@@ -1,4 +1,4 @@
-import { COMMENT, LIKE, POSTDATA } from "../Type/types"
+import { POSTDATA } from "../Type/types"
 
 const initialstate = {
     post : []
@@ -7,17 +7,17 @@ const initialstate = {
 const postReducer = (state = initialstate , action) => {
     switch(action.type){
         case POSTDATA :
+            // let ary = []
+            // let a = action.postdata?.map(x => {
+            //     if(ary[ary.length-1]?.length < 9){
+            //         ary[ary.length-1].push(x);  
+            //     }
+            //     else{
+            //         ary.push([x])
+            //     }
+            // })
             return {
                 post : action.postdata
-            }
-        
-        case COMMENT :
-            let post = state.post?.find(x => x.id == action.comment.postId)
-            'comment' in post == true ? post.comment.push(action.comment) : post.comment = [action.comment]
-            // post.comment = [ ...[] , action.comment]
-            // state.post?.filter(x => x.id == post.id ? x = post : x)
-            return {
-                post : state.post?.filter(x => x.id == post.id ? x = post : x)
             }
         default :
             return state
