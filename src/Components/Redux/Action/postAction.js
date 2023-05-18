@@ -51,3 +51,11 @@ export const updatePost = (obj) => {
         })
     }
 }
+
+export const updatePost = (obj) => {
+    return (dispatch) => {
+        axios.put(`http://localhost:3000/post/${obj.id}` , obj).then(() => {
+            dispatch(getPostApi())
+        })
+    }
+}

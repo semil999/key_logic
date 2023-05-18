@@ -10,7 +10,7 @@ const ProfilePage = () => {
   return (
     <>
         <div className='container h-100 d-flex justify-content-center align-items-center'>
-            <div className='bg-white shadow-lg rounded-4 h-75 w-75 p-3'>
+            <div className='bg-white shadow-lg rounded-4 w-75 p-3 profileheight'>
                 <div className='text-center'>
                     <img src={userData.profile} className='profileImage'/>
                 </div>

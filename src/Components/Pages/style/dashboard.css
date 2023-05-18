@@ -34,4 +34,5 @@
     background-color: rgba(24, 118, 242, 0.4);
     text-decoration: line-through;
     cursor: auto;
+    cursor: pointer;
 }

@@ -6,6 +6,8 @@ import Like from './Like'
 import { Button, Modal } from 'react-bootstrap';
 import Comments from './Comments'
 import { MagnifyingGlass } from 'react-loader-spinner'
+import { Button, Dropdown, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const MyPostsPage = () => {
   const post = useSelector(state => state.post.post)
@@ -55,7 +57,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
   return (
     <>
       <div className='container-fluid'>
-        <div className='row row-cols-3 g-4 py-3'>
+        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-2 g-4 py-3'>
           {
             myposts?.map((x,i) => {
               return <div className='col' key={i}>
@@ -65,6 +67,10 @@ const toBase64 = file => new Promise((resolve, reject) => {
                 </div>
                   <div>
                     {x.file == "" ? <div style={{height : '310px' , width : '100%'}} className='border-bottom border-2 d-flex flex-wrap justify-content-center align-items-center fw-bold fs-2'>Image Not Found<MagnifyingGlass visible={true} height="80" width="80" ariaLabel="MagnifyingGlass-loading" wrapperStyle={{}} wrapperClass="MagnifyingGlass-wrapper" glassColor = '#c0efff' color = 'red' /></div> : <img src={x.file} style={{height : '310px' , width : '100%'}} />}
+                  {/* <span className='pt-2'><BiDotsVerticalRounded style={{cursor : 'pointer'}} className='fs-5'/></span> */}
+                </div>
+                  <div>
+                    <img src={x.file} style={{height : '310px' , width : '100%'}} />
                   </div>
                   <div className='card-body'>
                     <h5 className="card-title">{x.title}</h5>
@@ -74,6 +80,9 @@ const toBase64 = file => new Promise((resolve, reject) => {
                     <div>
                       <button className='btn btn-danger me-3' onClick={() => dispatch(postDataDelete(x.id))}>Delete this post</button>
                       <button onClick={() => editPost(x)} className='btn btn-success'>Edit Post</button>
+                      <div className=''>
+                        <button className='btn btn-danger me-3' onClick={() => dispatch(postDataDelete(x.id))}>Delete Post</button><button onClick={() => editPost(x)} className='btn btn-success'>Edit Post</button>
+                      </div>
                     </div>
                   </div>
                   <div className='card-footer'>

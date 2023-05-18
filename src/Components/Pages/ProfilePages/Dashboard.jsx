@@ -15,9 +15,9 @@ const Dashboard = ({itemsPerPage}) => {
 
   function Items({currentItems}) {
     return (
-      <>
-        <div className='container-fluid'>
-        <div className='row row-cols-3 g-4 py-3'>
+    <>
+      <div className='container-fluid'>
+        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-2 g-4 py-3'>
           {
             currentItems?.map((x,i) => {
               return <div className='col' key={i}>

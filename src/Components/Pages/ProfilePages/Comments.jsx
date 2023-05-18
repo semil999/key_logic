@@ -54,6 +54,7 @@ const Comments = ({postId , userPostId}) => {
         }
         setisShow(false)
         setobj({...blanckObj})
+        setisShow(false)
     }
 
     const editComment = (x) => {
@@ -67,21 +68,16 @@ const Comments = ({postId , userPostId}) => {
         dispatch(Comment(postObj))
     }
 
-    const enterKey = (e) => {
-        console.log('first')
-        console.log(e)
-    }
-
   return (
     <>
-        <FaCommentDots style={{cursor : 'pointer'}} className='' onClick={() => setShow(true)}/> <span className='me-3 ms-1'>{postData?.comment?.length}</span>
-        <Modal show={show} onHide={() => setShow(false)} backdrop="static" keyboard={false}>
+        <FaCommentDots className='me-3' style={{cursor : 'pointer'}} onClick={() => setShow(true)}/>
+        <Modal show={show} onHide={() => setShow(false)}>
             <Modal.Header closeButton>
                 <Modal.Title>Comments</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className='mb-3'>
-                    <input onChange={commentData} value={obj.comment} type="text" className='commentinput' name='comment' placeholder='Add Your Comment' style={{ width : '95%' , border : 'none' , borderBottom : '0.5px solid gray'}}/> {isShow == true ? <FaLocationArrow style={{cursor : 'pointer'}} className='text-primary' onClick={addComment} onKeyPress={enterKey}/> : <></>}
+                    <input onChange={commentData} value={obj.comment} type="text" className='commentinput' name='comment' placeholder='Add Your Comment' style={{ width : '95%' , border : 'none' , borderBottom : '0.5px solid gray'}}/> {isShow == true ? <FaLocationArrow style={{cursor : 'pointer'}} className='text-primary' onClick={addComment}/> : <></>}
                 </div>
                 <div>
                     <dl>
