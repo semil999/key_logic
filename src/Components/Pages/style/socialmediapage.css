@@ -30,7 +30,7 @@
     font-weight: 600;
 }
 .dashbuttons:hover{
-    color: green;
+    color: green; 
     background-color: white;
 }
 .logoutbtn{
@@ -38,8 +38,7 @@
     background-color: red !important;
 }
 .logoutbtn:hover{
-    background-color: white !important;
-    color: red !important;
+    color: white !important;
 }
 .accountImage{
     height: 150px;

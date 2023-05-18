@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './Components/Pages/LoginPage';
 import RegisterPage from './Components/Pages/RegisterPage';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userApi } from './Components/Redux/Action/userDataAction';
 import SocialPage from './Components/Pages/ProfilePages/SocialPage';
@@ -16,7 +16,6 @@ import ErrorPage from './Components/Pages/ProfilePages/ErrorPage';
 
 function App() {
   const user = useSelector(state => state.user.user)
-
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(userApi())
@@ -32,10 +31,9 @@ function App() {
           {
             matchData == null ?
             <>
-              {/* <Route path='/' element={<Navigate to={'/login'} />}></Route> */}
               <Route path='/login' element={<LoginPage />}></Route>
               <Route path='/register' element={<RegisterPage />}></Route>
-              <Route path='*' element={<ErrorPage />}></Route>
+              {/* <Route path='*' element={<ErrorPage />}></Route> */}
             </>:
             <>
               <Route path='/' element={<Navigate to={'/account/dashboard'} />}/>

@@ -6,6 +6,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 20px 0;
 }
 .pagination ul{
     list-style-type: none;
@@ -13,26 +14,27 @@
     justify-content: center;
 }
 .pagination ul li a{
-    padding: 4px 10px 6px 10px;
-    background-color: rgb(24, 118, 242);
-    border: 3px solid #efefef;
-    color: white !important;
+    padding: 6px 15px 8px 15px;
+    margin: 0 5px;
+    border: 1px solid rgb(24, 118, 242);
+    color: gray !important;
+    background-color: #fff;
     text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
 }
 .pagination ul li:first-child a,.pagination ul li:last-child a{
-    padding: 4px 20px 6px 20px;
+    padding: 6px 13px 8px 13px;
     margin: 0 10px;
 }
 .pagination ul li:first-child,.pagination ul li:last-child{
     background-color: #efefef;
 }
 .pagination ul .selected a{
-    background-color: yellow;
-    color: black !important;
+    background-color: rgb(24, 118, 242);
+    color: #fff !important;
 }
 .pagination ul li.disabled a{
-    background-color: rgba(24, 118, 242, 0.4);
-    text-decoration: line-through;
+    /* background-color: rgba(24, 118, 242, 0.4); */
     cursor: auto;
-    cursor: pointer;
 }

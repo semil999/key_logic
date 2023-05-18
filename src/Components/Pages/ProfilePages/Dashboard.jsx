@@ -17,7 +17,7 @@ const Dashboard = ({itemsPerPage}) => {
     return (
     <>
       <div className='container-fluid'>
-        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-2 g-4 py-3'>
+        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-3 g-4 py-3'>
           {
             currentItems?.map((x,i) => {
               return <div className='col' key={i}>
@@ -29,7 +29,7 @@ const Dashboard = ({itemsPerPage}) => {
                         {
                           e.id == x.userId ? 
                           <>
-                            <img src={e.profile} height={40} width={40} style={{borderRadius : '50%'}} /> <span>{e.firstName} {e.lastName}</span>
+                            <img src={e?.profile} height={40} width={40} style={{borderRadius : '50%'}} /> <span>{e.firstName} {e.lastName}</span>
                           </> : <></>
                         }
                       </div>
@@ -81,11 +81,11 @@ const Dashboard = ({itemsPerPage}) => {
       <div className='pagination'>
       <ReactPaginate
         breakLabel="..."
-        nextLabel="next"
+        nextLabel=">"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel="previous"
+        previousLabel="<"
         renderOnZeroPageCount={null}
       />
       </div>

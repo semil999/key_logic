@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userUpdateData } from '../../Redux/Action/userDataAction'
 import "./../style/setting.css"
+import Swal from 'sweetalert2'
 
 const Setting = () => {
     const user = useSelector(state => state.user.user)
@@ -28,23 +29,36 @@ const Setting = () => {
         reader.onerror = reject;
     });
 
-    const saveData = () => {
+    const saveData = (e) => {
+        e.preventDefault();
         if(obj.id == userData.id){
             dispatch(userUpdateData(obj))
         }
     }
 
     const logout = () => {
-        localStorage.removeItem('loginData')
-        localStorage.removeItem('loginUser')
-        window.location.reload()
-        window.location.href = '/login'
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to Logout!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Logout'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem('loginData')
+                localStorage.removeItem('loginUser')
+                window.location.reload()
+                window.location.href = '/login'
+            }
+          })
     }
 
   return (
     <>
         <div className='container d-flex justify-content-center align-items-center h-100'>
-            <form className='bg-white settingdiv w-75 rounded-4 p-4 fs-5'>
+            <form className='bg-white settingdiv w-75 rounded-4 p-4 fs-5' onSubmit={saveData}>
                 <h3 className='text-center fw-bold text-decoration-underline' style={{color : '#1876f2'}}>Edit Your Profile</h3>
                 <label className='w-100 fw-bold pt-3'>First Name :- </label>
                 <input type="text" value={obj.firstName} name='firstName' className='w-100 editinput' onChange={data}/>
@@ -60,10 +74,8 @@ const Setting = () => {
                     <img src={obj.profile} style={{height : '40px' , width : '40px' , borderRadius : '50%'}} alt="" /><input type="file" className='ms-2' name='profile' onChange={data}/>
                 </div>
                 <div className='text-center pt-4'>
-                    <button onClick={saveData} className='btn btn-success px-3' type='button'>Update Profile</button>
+                    <button className='btn btn-success px-3' type='submit'>Update Profile</button>
                     <button className='btn btn-danger ms-3 px-3' type='button' onClick={logout}>Logout</button>
-                </div>
-                <div>
                 </div>
             </form>
         </div>

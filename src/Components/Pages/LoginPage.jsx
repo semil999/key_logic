@@ -1,67 +1,76 @@
-import React, { useState } from 'react'
-import "./style/loginpage.css"
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import Swal from 'sweetalert2'
+import React, { useState } from "react";
+import "./style/loginpage.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
-const LoginPage = () => {
-  const user = useSelector(state => state.user.user)
-  const blanckObj = {email : '' , password : ''}
-  const [obj, setobj] = useState({...blanckObj})
-  const navigate = useNavigate()
+const LoginPage = (props) => {
+  const user = useSelector((state) => state.user.user);
+  const blanckObj = { email: "", password: "" };
+  const [obj, setobj] = useState({ ...blanckObj });
+  const navigate = useNavigate();
 
   const logindata = (e) => {
-    obj[e.target.name] = e.target.value
-    setobj({...obj})
-  }
+    obj[e.target.name] = e.target.value;
+    setobj({ ...obj });
+  };
 
-  const saveData = () => {
-    let matchuserdata = user?.find(x => x?.email == obj?.email)
-    if(matchuserdata?.email == obj?.email && matchuserdata?.password == obj?.password){
+  const saveData = (e) => {
+    e.preventDefault();
+    let matchuserdata = user?.find((x) => x?.email == obj?.email);
+    if (
+      matchuserdata?.email == obj?.email &&
+      matchuserdata?.password == obj?.password
+    ) {
       Swal.fire({
-        position: 'center-center',
-        icon: 'success',
-        title: 'Your Login Successfully.',
+        position: "center-center",
+        icon: "success",
+        title: "Your Login Successfully.",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       setTimeout(() => {
-        localStorage.setItem('loginData' , JSON.stringify(obj))
-        localStorage.setItem('loginUser' , JSON.stringify(matchuserdata.id))
+        localStorage.setItem("loginData", JSON.stringify(obj));
+        localStorage.setItem("loginUser", JSON.stringify(matchuserdata.id));
         // navigate('/account/dashboard')
-        window.location.href = "/account/dashboard"
+        window.location.href = "/account/dashboard";
       }, 1500);
+
     }
-    else if(obj.email == "" && obj.password == ""){
-      Swal.fire(
-        'Please Fill Out This Fild !'
-      )
-    }
-    else{
+    else if (obj.email == "" && obj.password == "") {
+      Swal.fire("Please Fill Out This Fild !",'','question');
+    } 
+    else {
       Swal.fire({
-        icon: 'error',
-        title: 'Please enter valid UserName and Password.',
-      })
+        icon: "error",
+        title: "Please enter valid UserName and Password.",
+      });
     }
-  }
+  };
   return (
     <>
-        <div className='container d-flex justify-content-center align-items-center' style={{height : '100vh'}}>
-            <form className='shadow-lg p-4' style={{ borderRadius : '15px' , width : '400px' , backgroundColor : 'black' , color : 'white'}}>
-              <h2>LOGIN</h2>
-              <label className='w-100 pt-2 pb-1'>User Name :-</label>
-              <input type="email" className='w-100 logininp' onChange={logindata} name="email" />
-
-              <label className='w-100 pt-2 pb-1'>Password :-</label>
-              <input type="password" className='w-100 logininp' onChange={logindata} name='password' />
-
-              <div className='d-flex align-items-center mt-3'>
-                <button onClick={saveData} type='button' className='btn btn-success'>Login</button> <p className='pt-3 ps-2'>Don't have an account? <Link to={'/register'} style={{fontWeight : 'bold' , textDecoration : 'none'}}>Signup now</Link> </p>
-              </div>
-            </form>
+      <div className="login">
+        <div class="background">
+          <div class="shape"></div>
+          <div class="shape"></div>
         </div>
-    </>
-  )
-}
+        <form onSubmit={saveData}>
+          <h3>Login Here</h3>
 
-export default LoginPage
+          <label htmlFor="username">Username</label>
+          <input type="email" placeholder="Email ID" id="username" onChange={logindata} name="email" />
+
+          <label htmlFor="password">Password</label>
+          <input type="password" placeholder="Password" id="password" onChange={logindata} name="password"/>
+
+          <button type="submit" className="button">Log In</button>
+          <div className="pt-4 px-1">
+            <h6>Don't have an account? <Link to={'/register'} style={{color : '#3188ff'}} className="fw-bold text-decoration-none">Sing up</Link> </h6>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default LoginPage;
