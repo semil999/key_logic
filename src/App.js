@@ -13,6 +13,7 @@ import ProfilePage from './Components/Pages/ProfilePages/ProfilePage';
 import Setting from './Components/Pages/ProfilePages/Setting';
 import { getPostApi } from './Components/Redux/Action/postAction';
 import ErrorPage from './Components/Pages/ProfilePages/ErrorPage';
+import LoadingPage from './Components/Pages/ProfilePages/LoadingPage';
 
 function App() {
   const user = useSelector(state => state.user.user)
@@ -24,6 +25,7 @@ function App() {
 
   let loginData = JSON.parse(localStorage.getItem('loginData')) || {}
   let matchData = user?.find(x => x.email == loginData.email && x.password == loginData.password)
+  
   return (
     <>
       <BrowserRouter>
@@ -33,7 +35,7 @@ function App() {
             <>
               <Route path='/login' element={<LoginPage />}></Route>
               <Route path='/register' element={<RegisterPage />}></Route>
-              {/* <Route path='*' element={<ErrorPage />}></Route> */}
+              <Route path='*' element={<LoadingPage />}></Route>
             </>:
             <>
               <Route path='/' element={<Navigate to={'/account/dashboard'} />}/>
@@ -43,7 +45,7 @@ function App() {
                 <Route path='myposts' element={<MyPostsPage />} ></Route>
                 <Route path='setting' element={<Setting />} ></Route>
               </Route>
-                <Route path='*' element={<ErrorPage />}></Route>
+              <Route path='*' element={<ErrorPage />}></Route>
             </>
           }
         </Routes>
