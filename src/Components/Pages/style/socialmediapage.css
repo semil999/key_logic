@@ -1,5 +1,7 @@
 .leftside{
     width: 15%;
+    height: 100%;
+    border-right: 1px solid black;
 }
 .header{
     height: 8vh;
@@ -9,11 +11,22 @@
 }
 .rightside{
     width: 85%;
+    height: 100%;
 }
 .headerimg{
     height: 50px;
     width: 50px;
     border-radius: 50%;
+}
+.leftbutton{
+    border: none;
+    background-color: #1876f2;
+    cursor: pointer;
+    color: white;
+    padding: 5px 10px 7px 10px;
+    border-radius: 5px;
+    margin-top: 12px;
+    font-size: 17px;
 }
 .dashbuttons{
     border: 1px solid green;
@@ -55,12 +68,6 @@
 }
 
 @media (max-width : 1450px){
-    .leftside{
-        width: 20%;
-    }
-    .rightside{
-        width: 80%;
-    }
     .accountImage{
         height: 100px;
         width: 100px;
@@ -72,3 +79,56 @@
         height: 90vh;
     }
 } 
+@media (max-width : 1200px){
+    .leftside{
+        width: 20%;
+    }
+    .rightside{
+        width: 80%;
+    }
+} 
+@media (max-width : 991px){
+    .leftside{
+        width: 100%;
+        border-bottom: 1px solid black;
+        height: 16%;
+        border-right: none;
+    }
+    .rightside{
+        width: 100%;
+        height: 84%;
+    }
+    .accountImage{
+        margin-right: 5px;
+    }
+}
+@media (max-width : 767px){
+    .leftside{
+        width: 100%;
+        height: 16%;
+    }
+    .rightside{
+        width: 100%;
+        height: 84%;
+    }
+}
+@media (max-width : 576px){
+    .accountImage{
+        height: 80px;
+        width: 80px;
+    }
+    .topimagediv{
+        font-size: 14px;
+    }
+    .header a,.header span{
+        font-size: 20px;
+    }
+    .leftside{
+        width: 100%;
+        height: 13%;
+    }
+    .rightside{
+        width: 100%;
+        height: 87%;
+    }
+}

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import "./style/loginpage.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { addLoginUser } from "../Redux/Action/loginUserAction";
+import { v4 as uuidv4 } from 'uuid';
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const user = useSelector((state) => state.user.user);
   const blanckObj = { email: "", password: "" };
   const [obj, setobj] = useState({ ...blanckObj });
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const logindata = (e) => {
     obj[e.target.name] = e.target.value;
@@ -30,10 +33,10 @@ const LoginPage = (props) => {
         timer: 1500,
       });
       setTimeout(() => {
-        localStorage.setItem("loginData", JSON.stringify(obj));
-        localStorage.setItem("loginUser", JSON.stringify(matchuserdata.id));
-        // navigate('/account/dashboard')
-        window.location.href = "/account/dashboard";
+        obj.id = uuidv4();
+        obj.userId = matchuserdata.id
+        dispatch(addLoginUser(obj))
+        navigate('/account/dashboard')
       }, 1500);
 
     }
@@ -50,9 +53,9 @@ const LoginPage = (props) => {
   return (
     <>
       <div className="login">
-        <div class="background">
-          <div class="shape"></div>
-          <div class="shape"></div>
+        <div className="background">
+          <div className="shape"></div>
+          <div className="shape"></div>
         </div>
         <form onSubmit={saveData}>
           <h3>Login Here</h3>

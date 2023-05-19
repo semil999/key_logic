@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './Components/Pages/LoginPage';
 import RegisterPage from './Components/Pages/RegisterPage';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userApi } from './Components/Redux/Action/userDataAction';
 import SocialPage from './Components/Pages/ProfilePages/SocialPage';
@@ -12,26 +12,25 @@ import MyPostsPage from './Components/Pages/ProfilePages/MyPostsPage';
 import ProfilePage from './Components/Pages/ProfilePages/ProfilePage';
 import Setting from './Components/Pages/ProfilePages/Setting';
 import { getPostApi } from './Components/Redux/Action/postAction';
-import ErrorPage from './Components/Pages/ProfilePages/ErrorPage';
 import LoadingPage from './Components/Pages/ProfilePages/LoadingPage';
+import { getLoginUser } from './Components/Redux/Action/loginUserAction';
 
 function App() {
   const user = useSelector(state => state.user.user)
+  const loginUserId = useSelector(state => state.loginUser.loginUser[0]?.id)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(userApi())
     dispatch(getPostApi())
+    dispatch(getLoginUser())
   }, [])
-
-  let loginData = JSON.parse(localStorage.getItem('loginData')) || {}
-  let matchData = user?.find(x => x.email == loginData.email && x.password == loginData.password)
   
   return (
     <>
       <BrowserRouter>
         <Routes>
           {
-            matchData == null ?
+            !loginUserId ?
             <>
               <Route path='/login' element={<LoginPage />}></Route>
               <Route path='/register' element={<RegisterPage />}></Route>
@@ -45,7 +44,7 @@ function App() {
                 <Route path='myposts' element={<MyPostsPage />} ></Route>
                 <Route path='setting' element={<Setting />} ></Route>
               </Route>
-              <Route path='*' element={<ErrorPage />}></Route>
+              <Route path='*' element={<Navigate to={'/account/dashboard'} />}></Route>
             </>
           }
         </Routes>

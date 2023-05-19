@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addLike } from '../../Redux/Action/postAction'
 
 const Like = (props) => {
-    const userId = JSON.parse(localStorage.getItem('loginUser'))
+    const userId = useSelector(state => state.loginUser.loginUser[0]?.userId)
     const post = useSelector(state => state.post.post)
     const postdata = post?.find(x => x.id == props.postId)
     const [showLike, setshowLike] = useState(props?.like?.includes(userId) ? true : false)
     const dispatch = useDispatch()
-    
+
     const like = () => {
         if(!showLike){
             postdata.like.push(userId)

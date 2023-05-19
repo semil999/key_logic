@@ -30,7 +30,8 @@ export const postDataDelete = (id) => {
 
 export const addLike = (obj) => {
     return (dispatch) => {
-        axios.put(`http://192.168.29.148:3000/post/${obj.id}` , obj).then(() => {
+        axios.put(`http://192.168.29.148:3000/post/${obj.id}` , obj).then((res) => {
+            console.log(res.data , 'response')
             dispatch(getPostApi())
         })
     }

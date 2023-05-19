@@ -21,6 +21,7 @@
 }
 .profileheight{
     height: 75%;
+    width: 75%;
 }
 
 @media (max-width : 1750px){
@@ -54,5 +55,48 @@
     }
     .profilediv span{
         width: 80%;
+    }
+}
+@media (max-width : 991px){
+    .profileheight{
+        width: 100%;
+    }
+    .profilediv p{
+        width: 20%;
+    }
+    .profilediv span{
+        width: 80%;
+    }
+}
+@media (max-width : 767px){
+    .profilediv p{
+        width: 30%;
+    }
+    .profilediv span{
+        width: 70%;
+    }
+}
+@media (max-width : 576px){
+    .profilediv p{
+        width: 40%;
+    }
+    .profilediv span{
+        width: 60%;
+    }
+    .profileImage{
+        height: 120px;
+        width: 120px;
+    }
+}
+@media (max-width : 405px){
+    .profilediv p{
+        margin-bottom: 0;
+        width: 100%;
+    }
+    .profilediv span{
+        width: 100%;
+    }
+    .profileheight{
+        height: 80%;
     }
 }

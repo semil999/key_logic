@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 
 const MyPostsPage = () => {
   const post = useSelector(state => state.post.post)
-  const userId = JSON.parse(localStorage.getItem('loginUser'))
+  const userId = useSelector(state => state.loginUser.loginUser[0]?.userId)
   const myposts = post?.filter(x => x.userId == userId)
   const user = useSelector(state => state.user.user)
   const userData = user?.find(x => x.id == userId)
@@ -48,6 +48,13 @@ const toBase64 = file => new Promise((resolve, reject) => {
     }
     setobj({...blanckObj})
     handleClose()
+    Swal.fire({
+      position: "center-center",
+      icon: "success",
+      title: "Your Post Updated Successfully.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
 
   const editPost = (x) => {
@@ -66,22 +73,29 @@ const toBase64 = file => new Promise((resolve, reject) => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(postDataDelete(id))  
+        Swal.fire({
+          position: "center-center",
+          icon: "success",
+          title: "Your Post Deleted Successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     })
   }
   return (
     <>
       <div className='container-fluid'>
-        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-2 g-4 py-3'>
+        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-lg-3 g-4 py-3'>
           {
             myposts?.map((x,i) => {
               return <div className='col' key={i}>
                 <div className='card h-100'>
                 <div className='text-white p-2 bg-dark card-header d-flex justify-content-between'>
-                  <span><img src={userData.profile} height={40} width={40} style={{borderRadius : '50%'}} /> <span>{userData.firstName} {userData.lastName}</span></span>
+                  <span><img src={userData?.profile} height={40} width={40} style={{borderRadius : '50%'}} /> <span>{userData?.firstName} {userData?.lastName}</span></span>
                 </div>
                   <div>
-                    {x.file == "" ? <div style={{height : '310px' , width : '100%'}} className='border-bottom border-2 d-flex flex-wrap justify-content-center align-items-center fw-bold fs-2'>Image Not Found<MagnifyingGlass visible={true} height="80" width="80" ariaLabel="MagnifyingGlass-loading" wrapperStyle={{}} wrapperClass="MagnifyingGlass-wrapper" glassColor = '#c0efff' color = 'red' /></div> : <img src={x.file} style={{height : '310px' , width : '100%'}} />}
+                    {x.file == "" ? <div className='dashboardimg border-bottom border-2 d-flex flex-wrap justify-content-center align-items-center fw-bold fs-2'>Image Not Found<MagnifyingGlass visible={true} height="80" width="80" ariaLabel="MagnifyingGlass-loading" wrapperStyle={{}} wrapperClass="MagnifyingGlass-wrapper" glassColor = '#c0efff' color = 'red' /></div> : <img src={x.file} className='dashboardimg' />}
                 </div>
                   <div className='card-body'>
                     <h5 className="card-title">{x.title}</h5>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FaBookmark, FaShareSquare } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import "./../style/dashboard.css"
@@ -8,7 +8,7 @@ import { MagnifyingGlass } from 'react-loader-spinner'
 import ReactPaginate from 'react-paginate'
 
 const Dashboard = ({itemsPerPage}) => {
-  const userId = JSON.parse(localStorage.getItem('loginUser'))
+  const userId = useSelector(state => state.loginUser.loginUser[0]?.userId)
   const user = useSelector(state => state.user.user)
   const post = useSelector(state => state.post.post)
   const postData = post?.find(x => x.userId == userId)
@@ -17,7 +17,7 @@ const Dashboard = ({itemsPerPage}) => {
     return (
     <>
       <div className='container-fluid'>
-        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-3 g-4 py-3'>
+        <div className='row row-cols-1 row-cols-md-2 row-cols-xxl-3 px-lg-3 g-4 py-3'>
           {
             currentItems?.map((x,i) => {
               return <div className='col' key={i}>
@@ -37,7 +37,7 @@ const Dashboard = ({itemsPerPage}) => {
                     }
                     </div>
                   <div>
-                    {x.file == "" ? <div style={{height : '310px' , width : '100%'}} className='border-bottom border-2 d-flex flex-wrap justify-content-center align-items-center fw-bold fs-2'>Image Not Found <MagnifyingGlass visible={true} height="80" width="80" ariaLabel="MagnifyingGlass-loading" wrapperStyle={{}} wrapperClass="MagnifyingGlass-wrapper" glassColor = '#c0efff' color = 'red' /></div> : <img src={x.file} style={{height : '310px' , width : '100%'}} />}
+                    {x.file == "" ? <div className='dashboardimg border-bottom border-2 d-flex flex-wrap justify-content-center align-items-center fw-bold fs-2'>Image Not Found <MagnifyingGlass visible={true} height="80" width="80" ariaLabel="MagnifyingGlass-loading" wrapperStyle={{}} wrapperClass="MagnifyingGlass-wrapper" glassColor = '#c0efff' color = 'red' /></div> : <img className='dashboardimg' src={x.file} />}
                   </div>
                   <div className='card-body'>
                     <h5 className="card-title">{x.title}</h5>
@@ -59,7 +59,7 @@ const Dashboard = ({itemsPerPage}) => {
           }
         </div>
       </div>
-      </>
+    </>
     )
   }
 
@@ -70,7 +70,6 @@ const Dashboard = ({itemsPerPage}) => {
   const pageCount = Math.ceil(post.length / itemsPerPage);
 
   const handlePageClick = (event) => {
-    console.log(event , 'event')
     const newOffset = (event.selected * itemsPerPage) % post.length;
     setItemOffset(newOffset);
   };

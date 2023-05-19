@@ -94,9 +94,9 @@ const RegisterPage = () => {
   return (
     <>
       <div className="register d-flex justify-content-center align-items-center">
-        <form className="w-50 p-5 fs-5" onSubmit={submitUserData}>
+        <form className="p-md-5 px-sm-3 px-2 py-3 fs-5" onSubmit={submitUserData}>
           <h2 className="fw-semibold text-center py-1">Register Here</h2>
-          <div className="row">
+          <div className="row row-cols-1 row-cols-md-2">
             <div className="col">
               <label className="registerLable">First Name</label>
               <input
@@ -122,7 +122,7 @@ const RegisterPage = () => {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row row-cols-1 row-cols-md-2">
             <div className="col">
               <label className="registerLable">Email ID</label>
               <input
@@ -148,7 +148,7 @@ const RegisterPage = () => {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row row-cols-1 row-cols-md-2">
             <div className="col">
               <label className="registerLable">Password</label>
               <input

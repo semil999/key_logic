@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userUpdateData } from '../../Redux/Action/userDataAction'
 import "./../style/setting.css"
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+import { deleteLoginUser } from '../../Redux/Action/loginUserAction'
 
 const Setting = () => {
     const user = useSelector(state => state.user.user)
-    const loginUser = JSON.parse(localStorage.getItem('loginData')) || {}
-    const userData = user?.find(x => x.email == loginUser.email && x.password == loginUser.password)
+    const loginUser = useSelector(state => state.loginUser.loginUser[0])
+    const userData = user?.find(x => x.email == loginUser?.email && x.password == loginUser?.password)
     const [obj, setobj] = useState({...userData})
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     const data = async (e) => {
         if(e.target.name == "profile"){
@@ -34,6 +37,13 @@ const Setting = () => {
         if(obj.id == userData.id){
             dispatch(userUpdateData(obj))
         }
+        Swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Your Profile Updated Successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+        });
     }
 
     const logout = () => {
@@ -47,10 +57,10 @@ const Setting = () => {
             confirmButtonText: 'Yes, Logout'
           }).then((result) => {
             if (result.isConfirmed) {
-                localStorage.removeItem('loginData')
-                localStorage.removeItem('loginUser')
-                window.location.reload()
-                window.location.href = '/login'
+                dispatch(deleteLoginUser(loginUser.id))
+                setTimeout(() => {
+                    navigate('/login')
+                }, 1000);
             }
           })
     }
@@ -58,7 +68,7 @@ const Setting = () => {
   return (
     <>
         <div className='container d-flex justify-content-center align-items-center h-100'>
-            <form className='bg-white settingdiv w-75 rounded-4 p-4 fs-5' onSubmit={saveData}>
+            <form className='bg-white settingdiv rounded-4 p-4 fs-5' onSubmit={saveData}>
                 <h3 className='text-center fw-bold text-decoration-underline' style={{color : '#1876f2'}}>Edit Your Profile</h3>
                 <label className='w-100 fw-bold pt-3'>First Name :- </label>
                 <input type="text" value={obj.firstName} name='firstName' className='w-100 editinput' onChange={data}/>

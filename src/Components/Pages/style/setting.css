@@ -4,6 +4,7 @@
 }
 .settingdiv{
     height: 75%;
+    width: 75%;
 }
 .editinput:focus{
     outline: none;
@@ -16,11 +17,17 @@
 } 
 @media (max-width : 1450px){
     .settingdiv{
-        height: 90%;
+        height: 80%;
     }
 } 
 @media (max-width : 1300px){
     .settingdiv{
-        height: 97%;
+        height: 80%;
+    }
+}
+@media (max-width : 991px){
+    .settingdiv{
+        height: 90%;
+        width: 100%;
     }
 }

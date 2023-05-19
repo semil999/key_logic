@@ -46,3 +46,48 @@
     justify-content: center;
     align-items: center;
 }
+.dashboardimg{
+    height: 310px;
+    width: 100%;
+}
+.pagination ul{
+    padding-left: 0 !important;
+}
+
+
+@media (max-width : 1450px){
+    .dashboardimg{
+        height: 310px;
+        width: 100%;
+    }   
+} 
+@media (max-width : 1200px){
+    .dashboardimg{
+        height: 280px;
+        width: 100%;
+    }
+} 
+@media (max-width : 991px){
+    .dashboardimg{
+        height: 270px;
+        width: 100%;
+    }
+}
+@media (max-width : 767px){
+    .dashboardimg{
+        height: 400px;
+        width: 100%;
+    }
+}
+@media (max-width : 576px){
+    .dashboardimg{
+        height: 310px;
+        width: 100%;
+    }
+}
+@media (max-width : 405px){
+    .dashboardimg{
+        height: 220px;
+        width: 100%;
+    }
+}

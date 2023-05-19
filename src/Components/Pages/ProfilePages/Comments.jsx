@@ -9,7 +9,7 @@ import { Comment } from '../../Redux/Action/postAction';
 import Swal from 'sweetalert2';
 
 const Comments = ({postId , userPostId}) => {
-    const userId = JSON.parse(localStorage.getItem('loginUser'))
+    const userId = useSelector(state => state.loginUser.loginUser[0]?.userId)
     const [isShow, setisShow] = useState(false)
     const user = useSelector(state => state.user.user) 
     const userData = user?.find(x => x.id == userId)
@@ -51,6 +51,7 @@ const Comments = ({postId , userPostId}) => {
                 let postObj = post?.find(x => x.id == obj.postId)
                 'comment' in postObj == true ? postObj.comment.push(obj) : postObj.comment = [obj]
                 dispatch(Comment(postObj))
+                // setShow(false)
             }
         }
         else{
@@ -67,9 +68,9 @@ const Comments = ({postId , userPostId}) => {
             else{
                 postObj.comment.splice(update , 1 , obj)
                 dispatch(Comment(postObj))
+                // setShow(false)
             }
         }
-        setisShow(false)
         setobj({...blanckObj})
         setisShow(false)
     }
@@ -83,6 +84,7 @@ const Comments = ({postId , userPostId}) => {
         let update = postObj.comment?.findIndex(e => e.id == x.id)
         postObj.comment.splice(update , 1)
         dispatch(Comment(postObj))
+        setShow(false)
     }
 
   return (
@@ -105,16 +107,16 @@ const Comments = ({postId , userPostId}) => {
                                 return x.userId == userId ? 
                                 <div key={i}>
                                     <dt className='d-flex justify-content-between align-items-center fw-semibold text-dark'>{x.comment} <span><MdDelete style={{color : 'red' , cursor : 'pointer'}} className='fs-3' onClick={() => deleteComment(x)}/> <FaPen style={{cursor : 'pointer'}} onClick={() => editComment(x)} className='fs-5 text-success' /></span></dt>
-                                    <dd className='text-end border-bottom text-muted'>-{x.email}</dd>
+                                    <dd className='text-end border-bottom text-muted mt-2'>-{x.email}</dd>
                                 </div> :
                                 x.postId == userPostId ? 
                                 <div key={i}>
                                     <dt className='d-flex justify-content-between align-items-center fw-semibold text-dark'>{x.comment} <MdDelete style={{color : 'red' , cursor : 'pointer'}} className='fs-3' onClick={() => deleteComment(x)}/></dt>
-                                    <dd className='text-end border-bottom text-muted'>-{x.email}</dd>
+                                    <dd className='text-end border-bottom text-muted mt-2'>-{x.email}</dd>
                                 </div> :
                                 <div key={i}>
                                     <dt className='d-flex justify-content-between align-items-center fw-semibold text-dark'>{x.comment}</dt>
-                                    <dd className='text-end border-bottom text-muted'>-{x.email}</dd>
+                                    <dd className='text-end border-bottom text-muted mt-2'>-{x.email}</dd>
                                 </div>
                             })
                         }
